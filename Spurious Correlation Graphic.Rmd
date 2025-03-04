@@ -1,0 +1,14 @@
+---
+title: "Spurious Correlation Graphic"
+output: html_notebook
+---
+
+
+```{r}
+sunspots.add <- cumsum(sunspot.year)
+sunspots.dec.add <- data.frame(c(sunspots.add[91+10*(0:18)]))
+spur.cor <- data.frame(cbind(sunspots.dec.add,uspop))
+colnames(spur.cor)[1] <- "sunspots.dec.add"
+
+plot(spur.cor$sunspots.dec.add, spur.cor$uspop, xlim = c(4000,13500),ylim=c(0,220),pch=16, col="Red",text(spur.cor$sunspots.dec.add, spur.cor$uspop+7, labels=1790+(as.integer(row.names(spur.cor))-1)*10,cex=0.7),xlab = "Sunspots Since 1700", ylab = "United States Population (millions)")
+```
